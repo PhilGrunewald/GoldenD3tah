@@ -1,0 +1,143 @@
+
+a:link {
+    color: green;
+    text-decoration: none;
+}
+a:visited {
+    color: green;
+    text-decoration: none;
+}
+a:hover {
+    color: green !important;
+    text-decoration: none !important;
+}
+
+h1,p,a {
+    color: green;
+}
+
+rect.selection {
+  fill: white;
+}
+
+div.tooltip {
+    position: absolute;
+    text-align: left;
+    padding: 20px;
+    font: 20px sans-serif;
+    border-radius: 8px;
+    pointer-events: none;
+}
+div.overview {
+    text-align: left;
+    padding: 0px;
+    border-radius: 8px;
+    background: #eee;
+    margin:5px;
+}
+div.graph {
+    text-align: left;
+    padding: 20px;
+    border-radius: 8px;
+    background: #ddd;
+}
+div.stats {
+    text-align: left;
+    padding: 20px;
+    border-radius: 8px;
+}
+div.map {
+    text-align: left;
+    padding-top: 20px;
+    font: 20px sans-serif;
+    border-radius: 8px;
+    background: #ddd;
+}
+div.cp {
+    padding-top: 20px;
+    font: 20px sans-serif;
+    border-radius: 8px;
+    background: #eee;
+}
+div.interval {
+    background: #ddd;
+    padding: 5px;
+    font: 13px sans-serif;
+    border-radius: 8px;
+    margin: 5px;
+}
+.numberCircle {
+    width: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 32px;
+    border: 2px solid #666;
+}
+
+.bar-Bike { fill: #ded; stroke-width:2px; stroke: #8b8; }
+.bar-Run { fill: #ddd; stroke-width:2px; stroke: #888; }
+.bar-Row { fill: #dde; stroke-width:2px; stroke: #88b; }
+.bar-Erg { fill: #bbe; stroke-width:2px; stroke: #888; }
+.bar-Ski { fill: #eee; stroke-width:2px; stroke: #bbb; }
+.bar-Langlauf { fill: #eed; stroke-width:2px; stroke: #88b; }
+.bar-Rollerski { fill: #eed; stroke-width:2px; stroke: #88b; }
+
+.icon-undefined { background: #eee; }
+.icon-Bike {
+   background: #ded;
+   background-image: url(icon/Bike.png);
+   background-position: top right;
+   background-repeat: no-repeat;
+}
+.icon-Run {
+   background: #ddd;
+   background-image: url(icon/Run.png);
+   background-position: top right;
+   background-repeat: no-repeat;
+}
+.icon-Row {
+   background: #dde;
+   background-image: url(icon/Row.png);
+   background-position: top right;
+   background-repeat: no-repeat;
+}
+.icon-Erg {
+   background: #bbe;
+   background-image: url(icon/Erg.png);
+   background-position: top right;
+   background-repeat: no-repeat;
+}
+.icon-Ski {
+   background: #eee;
+   background-image: url(icon/Ski.png);
+   background-position: top right;
+   background-repeat: no-repeat;
+}
+.icon-Langlauf {
+   background: #eed;
+   background-image: url(icon/Rollerski.png);
+   background-position: top right;
+   background-repeat: no-repeat;
+}
+.icon-Rollerski {
+   background: #eed;
+   background-image: url(icon/Rollerski.png);
+   background-position: top right;
+   background-repeat: no-repeat;
+}
+
+.img-link:hover {
+       opacity: 30%;
+     }
+    .border {
+       box-shadow: 2pt 2pt 3pt 2pt #888;
+       border-radius: 25px;
+       padding: 20px;
+       margin: 10px;
+       opacity: 85%;
+    }
+    .border:hover {
+       box-shadow: 2pt 2pt 4pt 4pt #aaa;
+       opacity: 100%;
+    }
