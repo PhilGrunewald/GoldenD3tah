@@ -1,7 +1,7 @@
 GoldenD3tah
 ===========
 
-A set of tools to display and explore training data.
+A set of tools to display and explore training data. A working example is available [here](https://www.energy-use.org/gc/Phil).
 
 graph
 -----
