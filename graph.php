@@ -32,9 +32,9 @@ var graphID    = 1;
 var paceSports = ["Row", "Erg"];
 
 var HR_fills = [ {"min":0, "max":120, "colour": 'lightgreen','zone': "z1"},
-                {"min":120, "max":135, "colour": 'lightblue','zone': "z2"},
-                {"min":135, "max":150, "colour": 'orange','zone': "z3"},
-                {"min":150, "max":210, "colour": 'red','zone': "z4"}];
+                {"min":120, "max":140, "colour": 'lightblue','zone': "z2"},
+                {"min":140, "max":160, "colour": 'orange','zone': "z3"},
+                {"min":160, "max":210, "colour": 'red','zone': "z4"}];
 
 // time formating
 var dt_file = d3.timeParse("%Y_%m_%d_%H_%M_%S");
