@@ -377,9 +377,11 @@ def sport2html(d):
         f.write(result)
 
 def commit():
-    os.system(f'cd {home}')
+    # os.system(f'cd {home}')
+    # this needs to be run from gc folder for web push
+    # the Phil folder has the github repo
     os.system(f'git add {actFolder}')
-    os.system(f'git add sparklines')
+    os.system(f'git add {sparkFolder}')
     os.system('git add -u')
     os.system('git commit -m "update"')
     os.system('git push')

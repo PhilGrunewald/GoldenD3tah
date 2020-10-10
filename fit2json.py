@@ -8,7 +8,7 @@ def getFit(filename):
         'rowing'               : 'Row',
         'running'              : 'Run',
         'fitness_equipment'    : 'Erg',
-        'cross_country_skiing' : 'Langlauf',
+        'cross_country_skiing' : 'Rollerski',
         'skate_skiing'         : 'Rollerski'
         }
     subsports = {
