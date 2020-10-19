@@ -40,6 +40,8 @@ def getFit(filename):
     # from pprint import pprint
     # pprint(obj)
     t0 = False
+    t_gap = 0  # counts the omitted parts of session
+    t_last = 0 # measures the gap to last recording to establish gap
     for obj in messages:
         # other obj.names: activity, lap, device_info
         if (obj.name == 'file_id'):
@@ -61,12 +63,16 @@ def getFit(filename):
             for d in obj:
                 if d.name in sampleFields:
                     if d.name == 'timestamp':
-                        if t0:
-                            d.value = (d.value-t0).seconds
-                        else:
+                        sample['dt'] = d.value
+                        if not t0:
                             t0 = d.value
-                            d.value = False
-                    if d.value:
+                            sample['SECS'] = 0
+                        else:
+                            if ((d.value-t0).seconds - t_last) > 10:
+                                t_gap += (d.value-t0).seconds - t_last -1
+                            t_last = (d.value-t0).seconds
+                            sample['SECS'] = t_last - t_gap
+                    elif d.value:
                         sample[sampleFields[d.name]] = d.value
             for field in sampleFields:      # fill all missing with 0
                 if sampleFields[field] not in sample:
@@ -119,9 +125,9 @@ def getFit(filename):
 
     # resample to 1s
     df = pd.DataFrame(samples)
-    df['dt'] = [dt.datetime.fromtimestamp(s) for s in df.SECS.values]
+    df['dts'] = [dt.datetime.fromtimestamp(s) for s in df.SECS.values]
     # df = df[~df.index.duplicated(keep='first')] # drop duplicated seconds
-    df = df.set_index('dt')
+    df = df.set_index('dts')
     df = df.resample('1s').bfill()
     df = df.reset_index()
     df['SECS'] = list(range(len(df.index)))
