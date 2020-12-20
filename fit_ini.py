@@ -3,6 +3,7 @@ home = '/Users/pg/Sites/energy-use.org/public_html/gc/Phil/'
 datafile= (f'{home}activities.json')
 # Where to look for .fit files to import
 downloadFolder = '/Users/pg/Downloads/'
+zwiftFolder = '/Users/pg/Documents/Zwift/Activities/'
 garminFolder = '/Volumes/GARMIN/GARMIN/ACTIVITY/'
 
 # store .json files

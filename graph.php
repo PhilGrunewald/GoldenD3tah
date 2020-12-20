@@ -757,10 +757,15 @@ function plot_graph(filename,graphID,sections,cpData,cvData,tssData) {
                         )}
             tick = [];
             t = 0;
-            if (scale > 1) {
+            console.log(scale);
+            if (scale > 1) { // every minute
                 while (t < data[data.length-1]['SECS']) { tick.push(t); t+=60; }
-            } else {
+            } else if (scale > 0.2) {
                 while (t < data[data.length-1]['SECS']) { tick.push(t); t+=300; }
+            } else if (scale > 0.1) {
+                while (t < data[data.length-1]['SECS']) { tick.push(t); t+=600; }
+            } else {
+                while (t < data[data.length-1]['SECS']) { tick.push(t); t+=1200; }
             }
             gX.call(g_xAxis
                 .tickValues(tick)
@@ -770,10 +775,21 @@ function plot_graph(filename,graphID,sections,cpData,cvData,tssData) {
 
         // Tooltip on hover
         function mouseResponse() {
+            // let xMouse = d3.mouse(this)[0]-xShift; ///scale;
             let xMouse = d3.mouse(this)[0]-xShift; ///scale;
+            console.log("xShift ",xShift);
+            console.log(xMouse/scale);
+            console.log(scale);
+            console.log((xMouse-300)/(4*scale)+300)
+            // xMouse = ((xMouse-300)/(4*scale)+300);
+
+            // xMouse += 300;
+
             i=0;
             while (data[i]['SECS'] < xMouse/scale) { i+=1; }
+            // while (data[i]['SECS'] < xMouse*4) { i+=1; }
             let d = data[i];
+            // console.log(d);
             if ((xMouse >= 0) & (i < data.length-2)) {
                 cursorLine.attr("x1", xMouse+xShift).attr("x2", xMouse+xShift);
                 speedDot.attr("cx", xMouse+xShift).attr("cy", yKPH(d.KPH));
@@ -977,7 +993,7 @@ function plot_graph(filename,graphID,sections,cpData,cvData,tssData) {
 
         // Zoom out button
         graphDiv.append("div")
-            .attr("id",'zoom_in_'+filename).attr("class", "btn btn-light")
+            .attr("class", "btn btn-light")
             .on("click", function() {
                 left = x.domain()[0];
                 right = x.domain()[1];
@@ -997,9 +1013,10 @@ function plot_graph(filename,graphID,sections,cpData,cvData,tssData) {
                 if ("ALT" in data[0]) { updatePlot(data,'ALT') };
                 })
             .html("-");
+
         // Zoom in button
         graphDiv.append("div")
-            .attr("id",'zoom_in_'+filename).attr("class", "btn btn-light")
+            .attr("class", "btn btn-light")
             .on("click", function() {
                 left = x.domain()[0];
                 right = x.domain()[1];
@@ -1008,19 +1025,20 @@ function plot_graph(filename,graphID,sections,cpData,cvData,tssData) {
                 right = right - range/4
                 let items = Object.keys(data).length;
                 xmax = data[items-1].SECS;
-                if (right > xmax) { right = xmax }
-                if (left < 0 ) { left = 0 }
+                //if (right > xmax*1.5) { right = xmax*1.5 }
+                //if (right > xmax) { right = xmax }
+                //if (left < 0 ) { left = 0 }
                 x.domain([left,right]);
-
                 scale = g_width/(right - left);
-                //scale = (right - left)/g_width;
+                //shiftX();
                 if ("KPH"   in data[0]) { updatePlot(data,'KPH') };
                 if ("RCAD"  in data[0]) { updatePlot(data,'RCAD') };
                 if ("CAD"  in data[0]) { updatePlot(data,'CAD') };
                 if ("WATTS" in data[0]) { updatePlot(data,'WATTS') };
                 if ("ALT" in data[0]) { updatePlot(data,'ALT') };
-                //xShift = -(left+right)/2;
-                //shiftX;
+                // console.log("xShift: ", xShift);
+                // xShift = left-g_width/2; //  + (right-left)/2;
+                console.log("scale: ", scale);
             })
             .html("+");
 

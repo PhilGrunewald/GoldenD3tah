@@ -211,6 +211,8 @@ def getFit():
     fitFiles = glob.glob(f'{downloadFolder}*.fit')
     fitFiles += glob.glob(f'{downloadFolder}*.FIT')
     fitFiles += glob.glob(f'{garminFolder}*.FIT')
+    # only get the most recent Zwift file
+    fitFiles += [max(glob.glob(f'{zwiftFolder}*.fit'), key=os.path.getmtime)]
     for fitFile in fitFiles:
         data = fj.getFit(fitFile)
         date = datetime.strptime(data['RIDE']['STARTTIME'], '%Y/%m/%d %H:%M:%S UTC ')
@@ -388,7 +390,7 @@ def commit():
     os.system(f'git add {actFolder}')
     os.system(f'git add {sparkFolder}')
     os.system('git add -u')
-    os.system('git commit -m "update"')
+    os.system('git commit -m "gc update"')
     os.system('git push')
 
 getFit()
